@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Techniquesmixtes list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Détails</th>
+                <th>Dimensions</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for techniquesMixte in techniquesMixtes %}
+            <tr>
+                <td><a href="{{ path('techniquesmixtes_show', { 'id': techniquesMixte.id }) }}">{{ techniquesMixte.id }}</a></td>
+                <td>{{ techniquesMixte.nom }}</td>
+                <td>{{ techniquesMixte.détails }}</td>
+                <td>{{ techniquesMixte.dimensions }}</td>
+                <td>{% if techniquesMixte.date %}{{ techniquesMixte.date|date('Y-m-d') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('techniquesmixtes_show', { 'id': techniquesMixte.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('techniquesmixtes_edit', { 'id': techniquesMixte.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('techniquesmixtes_new') }}">Create a new techniquesMixte</a>
+        </li>
+    </ul>
+{% endblock %}

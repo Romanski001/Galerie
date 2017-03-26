@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Textile</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ textile.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ textile.nom }}</td>
+            </tr>
+            <tr>
+                <th>Détails</th>
+                <td>{{ textile.détails }}</td>
+            </tr>
+            <tr>
+                <th>Dimensions</th>
+                <td>{{ textile.dimensions }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{% if textile.date %}{{ textile.date|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('textile_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('textile_edit', { 'id': textile.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

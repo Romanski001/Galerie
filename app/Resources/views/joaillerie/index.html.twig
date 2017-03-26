@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Joailleries list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Détails</th>
+                <th>Dimensions</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for joaillerie in joailleries %}
+            <tr>
+                <td><a href="{{ path('joaillerie_show', { 'id': joaillerie.id }) }}">{{ joaillerie.id }}</a></td>
+                <td>{{ joaillerie.nom }}</td>
+                <td>{{ joaillerie.détails }}</td>
+                <td>{{ joaillerie.dimensions }}</td>
+                <td>{% if joaillerie.date %}{{ joaillerie.date|date('Y-m-d') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('joaillerie_show', { 'id': joaillerie.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('joaillerie_edit', { 'id': joaillerie.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('joaillerie_new') }}">Create a new joaillerie</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Autrestechniques list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Détails</th>
+                <th>Dimensions</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for autresTechnique in autresTechniques %}
+            <tr>
+                <td><a href="{{ path('autrestechniques_show', { 'id': autresTechnique.id }) }}">{{ autresTechnique.id }}</a></td>
+                <td>{{ autresTechnique.nom }}</td>
+                <td>{{ autresTechnique.détails }}</td>
+                <td>{{ autresTechnique.dimensions }}</td>
+                <td>{% if autresTechnique.date %}{{ autresTechnique.date|date('Y-m-d') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('autrestechniques_show', { 'id': autresTechnique.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('autrestechniques_edit', { 'id': autresTechnique.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('autrestechniques_new') }}">Create a new autresTechnique</a>
+        </li>
+    </ul>
+{% endblock %}
