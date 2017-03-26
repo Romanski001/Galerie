@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Textiles list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Détails</th>
+                <th>Dimensions</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for textile in textiles %}
+            <tr>
+                <td><a href="{{ path('textile_show', { 'id': textile.id }) }}">{{ textile.id }}</a></td>
+                <td>{{ textile.nom }}</td>
+                <td>{{ textile.détails }}</td>
+                <td>{{ textile.dimensions }}</td>
+                <td>{% if textile.date %}{{ textile.date|date('Y-m-d') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('textile_show', { 'id': textile.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('textile_edit', { 'id': textile.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('textile_new') }}">Create a new textile</a>
+        </li>
+    </ul>
+{% endblock %}

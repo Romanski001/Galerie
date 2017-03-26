@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Sculptures list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Details</th>
+                <th>Dimensions</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for sculpture in sculptures %}
+            <tr>
+                <td><a href="{{ path('sculpture_show', { 'id': sculpture.id }) }}">{{ sculpture.id }}</a></td>
+                <td>{{ sculpture.nom }}</td>
+                <td>{{ sculpture.details }}</td>
+                <td>{{ sculpture.dimensions }}</td>
+                <td>{% if sculpture.date %}{{ sculpture.date|date('Y-m-d') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('sculpture_show', { 'id': sculpture.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('sculpture_edit', { 'id': sculpture.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('sculpture_new') }}">Create a new sculpture</a>
+        </li>
+    </ul>
+{% endblock %}

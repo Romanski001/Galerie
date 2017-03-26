@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Illustration</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ illustration.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ illustration.nom }}</td>
+            </tr>
+            <tr>
+                <th>Détails</th>
+                <td>{{ illustration.détails }}</td>
+            </tr>
+            <tr>
+                <th>Dimensions</th>
+                <td>{{ illustration.dimensions }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{% if illustration.date %}{{ illustration.date|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('illustration_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('illustration_edit', { 'id': illustration.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Photographies list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Détails</th>
+                <th>Dimensions</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for photographie in photographies %}
+            <tr>
+                <td><a href="{{ path('photographie_show', { 'id': photographie.id }) }}">{{ photographie.id }}</a></td>
+                <td>{{ photographie.nom }}</td>
+                <td>{{ photographie.détails }}</td>
+                <td>{{ photographie.dimensions }}</td>
+                <td>{% if photographie.date %}{{ photographie.date|date('Y-m-d') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('photographie_show', { 'id': photographie.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('photographie_edit', { 'id': photographie.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('photographie_new') }}">Create a new photographie</a>
+        </li>
+    </ul>
+{% endblock %}

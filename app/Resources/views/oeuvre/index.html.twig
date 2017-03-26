@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Oeuvres list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Type</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for oeuvre in oeuvres %}
+            <tr>
+                <td><a href="{{ path('oeuvre_show', { 'id': oeuvre.id }) }}">{{ oeuvre.id }}</a></td>
+                <td>{{ oeuvre.type }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('oeuvre_show', { 'id': oeuvre.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('oeuvre_edit', { 'id': oeuvre.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('oeuvre_new') }}">Create a new oeuvre</a>
+        </li>
+    </ul>
+{% endblock %}

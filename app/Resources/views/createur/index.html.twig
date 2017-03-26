@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Createurs list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for createur in createurs %}
+            <tr>
+                <td><a href="{{ path('createur_show', { 'id': createur.id }) }}">{{ createur.id }}</a></td>
+                <td>{{ createur.nom }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('createur_show', { 'id': createur.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('createur_edit', { 'id': createur.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('createur_new') }}">Create a new createur</a>
+        </li>
+    </ul>
+{% endblock %}
