@@ -2,7 +2,10 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use AppBundle\Entity\Oeuvre;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Photographie
@@ -49,6 +52,12 @@ class Photographie
      */
     private $date;
 
+    /**
+       *@var ArrayCollection
+       *
+       *@ORM\OneToMany(targetEntity="Oeuvre", mappedBy="photographie")
+       */
+    private $oeuvres;
 
     /**
      * Get id
@@ -155,5 +164,54 @@ class Photographie
     {
         return $this->date;
     }
-}
 
+    /**
+    * add oeuvre
+    *
+    * @param Oeuvre $Oeuvre
+    *
+    * @return Photographie
+    */
+    public function addOeuvre(Oeuvre $oeuvre)
+    {
+        $this->oeuvres[] = $oeuvre
+
+        return $this;
+    }
+
+    /**
+    * remove oeuvre
+    *
+    * @param Oeuvre $Oeuvre
+    *
+    * @return Photographie
+    */
+    public function removeOeuvre(Oeuvre $oeuvre)
+    {
+        $this->oeuvres->removeElement($oeuvre)
+
+        return $this;
+    }
+
+    /**
+     * Set oeuvres
+     *
+     * @param ArrayCollection $oeuvres
+     *
+     * @return Photographie
+     */
+     public function setOeuvres(ArrayCollection $oeuvres)
+     {
+         $this->oeuvres = $oeuvres;
+     }
+
+     /**
+     * Get oeuvres
+     *
+     * @return ArrayCollection
+     */
+     public function getOeuvres()
+     {
+         return $this->$oeuvres;
+     }
+}

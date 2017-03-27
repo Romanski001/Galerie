@@ -5,6 +5,7 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class OeuvreType extends AbstractType
 {
@@ -14,8 +15,14 @@ class OeuvreType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('type')        ;
+            ->add('photographie', EntityType::class, [
+                'class'=>'AppBundle:Photographie',
+                'choice_label'=>function($photographie){
+                    return $photographie->getNom(). $photographie->getDétails(). $photographie->getDimensions(). $photographie->getDate();
+                }
+            ])
     }
-    
+
     /**
      * {@inheritdoc}
      */
