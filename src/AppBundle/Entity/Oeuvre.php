@@ -2,7 +2,10 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\Photographie;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Oeuvre
@@ -28,6 +31,12 @@ class Oeuvre
      */
     private $type;
 
+    /**
+    * @var Importance
+    * @ORM\ManyToOne(targetEntity="Photographie", inversedBy="Oeuvre")
+    * @ORM\JoinColumn(name="nom_id" , referencedColumnName="id")
+    */
+    private $photographie;
 
     /**
      * Get id
@@ -62,5 +71,28 @@ class Oeuvre
     {
         return $this->type;
     }
-}
 
+    /**
+     * Set photographie
+     *
+     * @param Photographie $photographie
+     *
+     * @return Oeuvre
+     */
+     public function setPhotographie(Photographie $photographie)
+     {
+         $this->photographie = $photographie;
+
+         return $this;
+     }
+
+     /**
+     * Get Photographie
+     *
+     * @return Photographie
+     */
+     public function getPhotographie()
+     {
+         return $this->photographie;
+     }
+}
